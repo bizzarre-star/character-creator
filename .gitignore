@@ -1,0 +1,7 @@
+.godot/
+/android/
+.export/
+.import/
+*.translation
+*.mono/
+.DS_Store
