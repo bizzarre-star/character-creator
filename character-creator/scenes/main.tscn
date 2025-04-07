@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyo35pkbdj78c"]
+
+[ext_resource type="Script" uid="uid://berp37wdp7n8u" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dyy2wybmspfbh" path="res://scenes/character.tscn" id="2_0wfyh"]
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 1
+background_color = Color(0.347604, 0.461684, 0.768588, 1)
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 0.2
+glow_bloom = 0.1
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_o5qli")
+
+[node name="Character" parent="." instance=ExtResource("2_0wfyh")]
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["main_camera"]]
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="KeyLight" type="DirectionalLight3D" parent="Lighting"]
+light_color = Color(0.875115, 0.884261, 0.928935, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="FillLight" type="DirectionalLight3D" parent="Lighting"]
+light_color = Color(0.867987, 0.868211, 0.921276, 1)
+light_energy = 0.5
+
+[node name="RimLight" type="DirectionalLight3D" parent="Lighting"]
+light_energy = 0.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o5qli")

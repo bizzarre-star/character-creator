@@ -14,6 +14,10 @@ config/name="Character Creator"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
-[rendering]
+[autoload]
 
-renderer/rendering_method="mobile"
+CustomizationManager="*res://scripts/customization_manager.gd"
+
+[global_group]
+
+main_camera=""
