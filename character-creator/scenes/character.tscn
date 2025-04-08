@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyy2wybmspfbh"]
 
 [ext_resource type="Script" uid="uid://bu4fa6n841ido" path="res://scripts/character.gd" id="1_agfs1"]
-[ext_resource type="PackedScene" uid="uid://dvdribyashvam" path="res://assets/char_create_base.fbx" id="2_rkhd4"]
+[ext_resource type="PackedScene" uid="uid://ejq7cemqdei1" path="res://assets/char_create_base.glb" id="2_rkhd4"]
 
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_agfs1")
