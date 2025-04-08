@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Character Creator"
+run/main_scene="uid://cyo35pkbdj78c"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -21,3 +22,4 @@ CustomizationManager="*res://scripts/customization_manager.gd"
 [global_group]
 
 main_camera=""
+character_container=""
