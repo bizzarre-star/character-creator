@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c84gj8mx6slu6"]
+
+[ext_resource type="PackedScene" uid="uid://cvyiqrmftmqcq" path="res://assets/char_create_base.glb" id="1_3gsql"]
+[ext_resource type="Material" uid="uid://c25e76210s7rd" path="res://materials/body_mat.tres" id="2_o3ycm"]
+[ext_resource type="Material" uid="uid://ck554248cmag0" path="res://materials/shirt_mat.tres" id="3_phxfu"]
+[ext_resource type="Material" uid="uid://dg3w7ockpd5ki" path="res://materials/pants_mat.tres" id="4_6e6gx"]
+
+[node name="char_create_base" instance=ExtResource("1_3gsql")]
+
+[node name="Body" parent="." index="0"]
+material_override = ExtResource("2_o3ycm")
+
+[node name="Shirt1" parent="." index="1"]
+material_override = ExtResource("3_phxfu")
+
+[node name="Shirt2" parent="." index="2"]
+visible = false
+material_override = ExtResource("3_phxfu")
+
+[node name="Pants1" parent="." index="3"]
+material_override = ExtResource("4_6e6gx")
+
+[node name="Pants2" parent="." index="4"]
+visible = false
+material_override = ExtResource("4_6e6gx")

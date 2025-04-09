@@ -49,7 +49,7 @@ func randomize_character() -> void:
 	character_data.pants_color = Color(randf_range(0, 1.0), 
 	randf_range(0, 1.0), randf_range(0, 1.0), 1.0)
 	
-	character_data.shoe_color = Color(randf_range(0, 1.0), 
+	character_data.shoes_color = Color(randf_range(0, 1.0), 
 	randf_range(0, 1.0), randf_range(0, 1.0), 1.0)
 	
 	character_data.selected_hair = randi_range(0, 

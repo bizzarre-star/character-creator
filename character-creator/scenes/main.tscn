@@ -25,6 +25,7 @@ script = ExtResource("3_sugp2")
 [node name="Lighting" type="Node3D" parent="."]
 
 [node name="KeyLight" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.149167, -0.94695, 0.284668, -0.0801043, 0.27537, 0.957995, -0.985562, -0.165704, -0.0347788, 10.0321, 6.28565, 2.73427)
 light_color = Color(0.875115, 0.884261, 0.928935, 1)
 light_energy = 2.0
 shadow_enabled = true
@@ -40,4 +41,3 @@ light_energy = 0.3
 environment = SubResource("Environment_o5qli")
 
 [node name="CustomizationPanel" parent="." instance=ExtResource("4_jyhfs")]
-anchors_preset = 6

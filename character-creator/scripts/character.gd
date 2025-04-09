@@ -1,15 +1,9 @@
 extends CharacterBody3D
 
 @onready var character_container: Node3D = $CharacterContainer
-@onready var character_model: Node3D = $CharacterContainer/CharacterModel
+@onready var character_model: Node3D = $CharacterContainer/CharacterModel/char_create_base
 
-var skin_materials: Array[BaseMaterial3D] = []
-var hair_materials: Array[BaseMaterial3D] = []
-var shirt_materials: Array[BaseMaterial3D] = []
-var jacket_materials: Array[BaseMaterial3D] = []
-var pants_materials: Array[BaseMaterial3D] = []
-var shoes_materials: Array[BaseMaterial3D] = []
-
+var body_mesh: MeshInstance3D
 var hair_mesh: MeshInstance3D
 var shirt_mesh: MeshInstance3D
 var jacket_mesh: MeshInstance3D
@@ -27,39 +21,34 @@ func _ready() -> void:
 func _cache_materials() -> void:
 	for child in character_model.find_children("*", "MeshInstance3D"):
 		var mesh := child as MeshInstance3D
-		if not mesh or mesh.mesh:
+		if not mesh or not mesh.mesh:
 			continue
 		
 		var surface_count: int = mesh.mesh.get_surface_count()
 		
 		for surface_idx in range(surface_count):
 			var material = mesh.get_active_material(surface_idx)
-			if material and material is StandardMaterial3D:
+			if material and material is BaseMaterial3D:
 				var unique_material := material.duplicate() as StandardMaterial3D
 				
 				match child.name:
-					"Base_body":
+					"Body":
 						child.set_surface_override_material(surface_idx, unique_material)
-						skin_materials.append(unique_material)
+						body_mesh = child
 					HAIR_MESH_NAME:
 						child.set_surface_override_material(surface_idx, unique_material)
-						hair_materials.append(unique_material)
 						hair_mesh = child
-					"Base_shirt":
+					"Shirt1":
 						child.set_surface_override_material(surface_idx, unique_material)
-						shirt_materials.append(unique_material)
 						shirt_mesh = child
 					"Base_jacket":
 						child.set_surface_override_material(surface_idx, unique_material)
-						jacket_materials.append(unique_material)
 						jacket_mesh = child
-					"Base_pants":
+					"Pants1":
 						child.set_surface_override_material(surface_idx, unique_material)
-						pants_materials.append(unique_material)
 						pants_mesh = child
 					"Base_shoes":
 						child.set_surface_override_material(surface_idx, unique_material)
-						shoes_materials.append(unique_material)
 						shoes_mesh = child
 
 
@@ -74,16 +63,16 @@ func _on_color_updated(part: CharacterData.BodyPart, color: Color) -> void:
 	match part:
 		CharacterData.BodyPart.BASE:
 			_update_shirt_color(color)
-		CharacterData.BodyPart.HAIR:
-			_update_hair_color(color)
+		#CharacterData.BodyPart.HAIR:
+			#_update_hair_color(color)
 		CharacterData.BodyPart.SHIRT:
 			_update_shirt_color(color)
-		CharacterData.BodyPart.JACKET:
-			_update_jacket_color(color)
+		#CharacterData.BodyPart.JACKET:
+			#_update_jacket_color(color)
 		CharacterData.BodyPart.PANTS:
 			_update_pants_color(color)
-		CharacterData.BodyPart.SHOES:
-			_update_shoes_color(color)
+		#CharacterData.BodyPart.SHOES:
+			#_update_shoes_color(color)
 
 
 func _on_customization_updated() -> void:
@@ -93,13 +82,13 @@ func _on_customization_updated() -> void:
 func _update_from_data() -> void:
 	var data = CustomizationManager.character_data
 	_update_skin_color(data.skin_color)
-	_update_hair_color(data.hair_color)
+	#_update_hair_color(data.hair_color)
 	_update_shirt_color(data.shirt_color)
-	_update_jacket_color(data.jacket_color)
+	#_update_jacket_color(data.jacket_color)
 	_update_pants_color(data.pants_color)
-	_update_shoes_color(data.shoes_color)
-	_update_hair_visibility(data.selected_hair)
-	_update_clothing_visiblity(data)
+	#_update_shoes_color(data.shoes_color)
+	#_update_hair_visibility(data.selected_hair)
+	#_update_clothing_visiblity(data)
 
 
 func _update_hair_visibility(selected_hair: CharacterData.Hairstyle) -> void:
@@ -116,32 +105,26 @@ func _update_clothing_visiblity(data: CharacterData) -> void:
 
 
 func _update_skin_color(color: Color) -> void:
-	for material in skin_materials:
-		material.albedo_color = color
+	body_mesh.material_override.albedo_color = color
 
 
 func _update_hair_color(color: Color) -> void:
-	for material in hair_materials:
-		material.albedo_color = color
-		material.roughness = 0.7
-		material.metallic = 0.3
+	hair_mesh.material_override.albedo_color = color
+	hair_mesh.material_override.roughness = 0.7
+	hair_mesh.material_override.metallic = 0.3
 
 
 func _update_shirt_color(color: Color) -> void:
-	for material in shirt_materials:
-		material.albedo_color = color
+	shirt_mesh.material_override.albedo_color = color
 
 
 func _update_jacket_color(color: Color) -> void:
-	for material in jacket_materials:
-		material.albedo_color = color
+	jacket_mesh.material_override.albedo_color = color
 
 
 func _update_pants_color(color: Color) -> void:
-	for material in pants_materials:
-		material.albedo_color = color
+	pants_mesh.material_override.albedo_color = color
 
 
 func _update_shoes_color(color: Color) -> void:
-	for material in shoes_materials:
-		material.albedo_color = color
+	shoes_mesh.material_override.albedo_color = color

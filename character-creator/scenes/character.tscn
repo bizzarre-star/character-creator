@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyy2wybmspfbh"]
 
 [ext_resource type="Script" uid="uid://bu4fa6n841ido" path="res://scripts/character.gd" id="1_agfs1"]
-[ext_resource type="PackedScene" uid="uid://ejq7cemqdei1" path="res://assets/char_create_base.glb" id="2_rkhd4"]
+[ext_resource type="PackedScene" uid="uid://c84gj8mx6slu6" path="res://assets/CharacterModel.tscn" id="2_rkhd4"]
 
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_agfs1")
 
-[node name="CharacterContainer" type="Node3D" parent="."]
+[node name="CharacterContainer" type="Node3D" parent="." groups=["character_container"]]
 
-[node name="CharacterModel" parent="CharacterContainer" groups=["character_container"] instance=ExtResource("2_rkhd4")]
+[node name="CharacterModel" parent="CharacterContainer" instance=ExtResource("2_rkhd4")]
+
+[node name="char_create_base" parent="CharacterContainer/CharacterModel" instance=ExtResource("2_rkhd4")]
